@@ -16,6 +16,7 @@ namespace BHX560ProgramCheck
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Connection.CheckSettings();
             Application.Run(new Form1());
         }
     }
