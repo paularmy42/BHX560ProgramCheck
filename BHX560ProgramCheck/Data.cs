@@ -19,10 +19,11 @@ namespace BHX560ProgramCheck
             {
                 using (SqlConnection con = new SqlConnection(Connection.ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT TblJobDPCSV.JobNumber, JobStatus, DateInProduction, BarcodeID " +
+                    SqlCommand cmd = new SqlCommand("SELECT TblJobDPCSV.JobNumber, JobStatus, IssueDate, BarcodeID " +
                                         "FROM TblJobDPCSV WITH(NOLOCK) " +
                                         "INNER JOIN TblClaytonsJobData WITH(NOLOCK) ON TblJobDPCSV.JobNumber = TblClaytonsJobData.JobNumber " +
-                                        "WHERE JobStatus IN('IP', 'D') AND DoorAndPanelHingeDone = 0 AND Point2Point = 'UNIX' " +
+                                        "WHERE JobStatus IN ('IP', 'D') AND DoorAndPanelHingeDone = 0 AND Point2Point = 'UNIX' " +
+                                        "AND UserName = 'Automation'" +
                                         "ORDER BY BarcodeID ASC", con);
                     if (con.State == ConnectionState.Closed) con.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);

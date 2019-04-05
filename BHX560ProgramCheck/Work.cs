@@ -24,16 +24,14 @@ namespace BHX560ProgramCheck
                 if(!exists && !jobsMissing.Contains(row[0].ToString()))
                 {
                     jobsMissing.Add(row[0].ToString());
-                    //if (row[0].ToString() == "B112727")
-                    //{
-                    //    break;
-                    //}
-
                 }
             }
             foreach(string job in jobsMissing)
             {
-                File.Copy(@"O:\BSAW\Data\Import\MachineCSV\BHX\" + job + "BHXDP.csv", @"\\10.105.60.1\e\CustomerData\CSV\" + job + "BHXDP.csv");
+                if(File.Exists(@"O:\BSAW\Data\Import\MachineCSV\BHX\" + job + "BHXDP.csv"))
+                {
+                    File.Copy(@"O:\BSAW\Data\Import\MachineCSV\BHX\" + job + "BHXDP.csv", @"\\10.105.60.1\e\CustomerData\CSV\" + job + "BHXDP.csv");
+                }
             }
             Debug.Write("Done");
         }
